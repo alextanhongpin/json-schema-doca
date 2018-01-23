@@ -10,7 +10,7 @@
       "rel": "all",
       "method": "GET",
       "schema": {
-        "$ref": "../schema.json"
+        "$ref": "../jobs.json"
       },
       "hidden": true
     },
@@ -21,7 +21,7 @@
       "rel": "one",
       "method": "POST",
       "schema": {
-        "$ref": "../schema.json"
+        "$ref": "../jobs.json"
       }
     }
   ]
