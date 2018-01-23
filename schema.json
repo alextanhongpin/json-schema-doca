@@ -1,0 +1,98 @@
+{
+    "id": "/jobs",
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Jobs",
+    "description": "Return jobs that matches the search criteria.",
+    "type": "object",
+    "definitions": {
+        "work_locations": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9999999,
+            "description": "The work location code"
+        },
+        "specializations": {
+            "type": "integer",
+            "minimum": 1000,
+            "maximum": 9000,
+            "description": "Specialization code ranging from 1000 to 9000."
+        },
+        "keyword": {
+            "type": "string",
+            "minLength": 2,
+            "description": "A case-insensitive keyword with a minimum length of 2",
+            "example": "hello world"
+        },
+        "no_keyword": {
+            "type": "null",
+            "description": "No keyword field"
+        }
+    },
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Id of the user.",
+            "example": 1,
+            "minimum": 0
+        },
+        "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "description": "Receipient email to deliver the content to.",
+            "example": "john.doe@mail.com"
+        },
+        "country_code": {
+            "type": "string",
+            "enums": ["my", "sg", "ph", "vn", "id"],
+            "description": "Country code in ISO format, lowercase.",
+            "example": "my"
+        },
+        "keyword": {
+            "type": "string",
+            "anyOf": [
+                { "$ref": "#/definitions/keyword" },
+                { "$ref": "#/definitions/no_keyword" }
+            ],
+            "description": "Case-insensitive keyword with minimum length of 2."
+        },
+        "work_locations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/work_locations"
+            },
+            "description": "Array of work location code.",
+            "example": [50050, 500060]
+        },
+        "specializations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/specializations"
+            },
+            "description": "Array of specialization code.",
+            "example": [1001, 1002, 1003]
+        },
+        "expected_salary": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000000000,
+            "description": "Expected salary in US dollar.",
+            "example": 1000
+        },
+        "start_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date range for jobs to be matched. Defaults to today.",
+            "default": "2018-01-01",
+            "example": "2018-01-01"
+        },
+        "end_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date range for jobs to be matched. Defaults to today.",
+            "default": "2018-01-31",
+            "example": "2018-01-31"
+        }
+    },
+    "required": ["id", "email", "country_code"]
+}

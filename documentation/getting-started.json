@@ -1,0 +1,28 @@
+{
+  "id": "/getting/started",
+  "title": "Jobs",
+  "hidden": true,
+  "links": [
+    {
+      "title": "All",
+      "description": "Return all jobs",
+      "href": "jobs",
+      "rel": "all",
+      "method": "GET",
+      "schema": {
+        "$ref": "../schema.json"
+      },
+      "hidden": true
+    },
+    {
+      "title": "One",
+      "description": "Return one job",
+      "href": "jobs/{id}",
+      "rel": "one",
+      "method": "POST",
+      "schema": {
+        "$ref": "../schema.json"
+      }
+    }
+  ]
+}
